@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Index</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <!-- HTML form -->
+  <form id="userForm">
+    <fieldset>
+      <legend>Sign Up</legend>
+        <div>
+          <div class="inputs">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required>
+          </div>
+        
+          <div class="inputs">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="inputs">
+            <label for="website">Website:</label><br>
+            <input type="url" id="website" name="website" required>
+          </div>
+        
+          <div class="inputs">
+            <label for="image">Image:</label><br>
+            <input type="file" id="image" name="image" accept="image/*" required>
+          </div>
+        
+          <input type="submit" value="Submit" class="btn" style="margin-left:3vh;padding:10px;border-radius:3px;">
+        </div>
+        <div>
+          <input type="image" style="padding-top: 50px;" src="./signin-image.jpg" width="100%" height="70%">
+        </div>
+    </fieldset>
+  </form>
+  
+  <div class="copy bttn">
+    <button id="copyButton" onclick="copyDetails()" class="btn">Copy</button>
+  </div>
+
+  <!-- Display container for entered details -->
+  <fieldset id="dataContainer">
+    <div  id="displayContainer">
+    </div>
+  </fieldset>
+  
+  <!-- "Copy" button -->
+<script>
+  // JavaScript to handle form submission and displaying details
+document.getElementById("userForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // Prevent form submission
+  
+  // Get form values
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var website = document.getElementById("website").value;
+  var imageFile = document.getElementById("image").files[0];
+  
+  // Create display container
+  var displayContainer = document.createElement("div");
+  displayContainer.classList.add("details-container");
+  
+  // Display name
+  var nameElement = document.createElement("h1");
+  nameElement.innerText = "Name: " + name;
+  displayContainer.appendChild(nameElement);
+  
+  // Display email
+  var emailElement = document.createElement("h1");
+  emailElement.innerText = "Email: " + email;
+  displayContainer.appendChild(emailElement);
+  
+  // Display website
+  var websiteElement = document.createElement("h1");
+  websiteElement.innerText = "Website: " + website;
+  displayContainer.appendChild(websiteElement);
+  
+
+  // Display image
+  var imageElement = document.createElement("img");
+  imageElement.src = URL.createObjectURL(imageFile);
+  displayContainer.appendChild(imageElement);
+  
+  // Append display container to the main container
+  var mainContainer = document.getElementById("displayContainer");
+  mainContainer.appendChild(displayContainer);
+  
+  // Clear form inputs
+  document.getElementById("userForm").reset();
+});
+
+// JavaScript to handle copy functionality
+function copyDetails() {
+  var displayContainer = document.getElementById("displayContainer");
+  
+ // Create a range object to select the form details
+ var range = document.createRange();
+ range.selectNode(document.getElementById("userForm"));
+
+
+  // Create a temporary textarea to hold the text content
+  var tempTextarea = document.createElement("textarea");
+  tempTextarea.value = displayContainer.innerText;
+  
+  // Append the temporary textarea to the body
+  document.body.appendChild(tempTextarea);
+
+  // Select the text within the textarea
+  tempTextarea.select();
+  tempTextarea.setSelectionRange(0, 99999); // For mobile devices
+  
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  // Copy the selected text to the clipboard
+  document.execCommand("copy");
+  
+  // Remove the temporary textarea
+  document.body.removeChild(tempTextarea);
+  
+  selection.removeAllRanges();
+  // Alert the user that details have been copied
+  alert("Details copied to clipboard!");
+}
+
+
+
+</script>
+</body>
+</html>
+<!-- document.getElementById("copy-button").addEventListener("click", function() {
+  // Create a range object to select the form details
+  var range = document.createRange();
+  range.selectNode(document.getElementById("form-details"));
+
+  // Add the range to the user's selection
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  // Copy the selected content to the clipboard
+  document.execCommand("copy");
+
+  // Clean up the selection
+  selection.removeAllRanges();
+  
+  // Show a message or perform any additional actions
+  alert("Form details copied!");
+}); -->

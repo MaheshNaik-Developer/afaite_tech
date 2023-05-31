@@ -1,0 +1,55 @@
+/* CSS for formatting the displayed details */
+body{
+    margin: auto;
+    padding: auto;
+	background: fixed;
+    background-image: url(./Company-Registration-Online.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+	
+}
+.details-container {
+	text-align: center;
+  }
+  
+  .details-container img {
+	max-width: 200px;
+	max-height: 200px;
+  }
+  fieldset{
+    display: flex;
+    margin: auto;
+    width: 40%;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color:white; 
+}
+.inputs{
+    line-height:4vh;
+    padding: 18px;
+}
+label{
+    font-weight: 600;
+}
+input{
+    line-height: 0vh;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+}
+.btn{
+    cursor: pointer;
+    transition: .3s;
+}
+.btn:hover{
+    
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+   
+}
+.copy{
+text-align: center;
+padding: 10px;
+border-radius:3px;
+}
